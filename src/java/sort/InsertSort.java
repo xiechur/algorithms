@@ -16,6 +16,7 @@ public class InsertSort {
         for(int i = low + 1; i <= high; i ++){
             if (strategy.compareTo(o[i],o[i-1]) < 0){
                 Object temp =o[i];
+
                 o[i] = o[i-1];
                 int j = i-2;
                 for (;j >=low && strategy.compareTo(temp,o[j])<0;j--){//记录后移

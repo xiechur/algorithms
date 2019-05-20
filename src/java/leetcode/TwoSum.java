@@ -1,4 +1,4 @@
-package leetcode.page1;
+package java.leetcode;
 
 import java.io.FileReader;
 import java.util.HashMap;

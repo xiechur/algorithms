@@ -1,6 +1,7 @@
 package leetcode;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,21 +39,70 @@ import java.util.List;
 public class FindAllAnagrams {
 
 
-    public List<Integer> findAnagrams(String s, String p) {
-        List<Integer> list = null;
+    public static List<Integer> findAnagrams(String s, String p) {
+        List<Integer> list = new ArrayList<Integer>();
 
         char[] ch1 =s.toCharArray();
         char[] ch2 =p.toCharArray();
-        char[] letterChar = new char[26];
+        int[] arr = new int[26];
+        //
         for (int i = 0; i < ch2.length; i++) {
-            letterChar[ch2[i]-'a'] ++;
+            arr[ch2[i]-'a'] ++;
         }
+        // from index 0
         for (int i = 0; i <= ch1.length - ch2.length; i++) {
-
+            boolean match = true;
+            int[] temp = new int[26];
+            for (int k = i; k < i + ch2.length; k++) {
+                temp[ch2[k]-'a'] ++;
+            }
+            // compare temp,arr
+            for (int l = 0; l < arr.length;l++) {
+                if (temp[l] != arr[l]) {
+                    match = false;
+                    break;
+                }
+            }
+            if (isSame(temp, arr)) {
+                list.add(i);
+            }
         }
         return list;
     }
 
+    private static boolean isSame(int[] arr1,int[] arr2){
+        if (arr1.length == arr2.length) {
+            for (int i = 0; i < arr1.length; i++) {
+                if (arr1[i] != arr2[i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+
+    public static void main(String[] args) {
+        String p = "cfc";
+        char[] ch2 =p.toCharArray();
+        char[] ch1 =p.toCharArray();
+        int[] letterChar = new int[26];
+//        for (int i = 0; i < ch2.length; i++) {
+//            letterChar[ch2[i]-'a'] ++;
+//        }
+        System.out.println(ch1==ch2);
+        System.out.println(ch1.equals(ch2));
+        for (int i = 0;i< ch1.length;i++) {
+            if (ch1[i]-ch2[i] == 0) {
+
+            } else {
+
+            }
+        }
+
+
+    }
 
 
 

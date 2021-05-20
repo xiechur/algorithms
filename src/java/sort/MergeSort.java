@@ -51,7 +51,7 @@ public class MergeSort {
 
 
     public static void main(String[] args) {
-        int[] nums = {16, 5, 1, 56, 18, 7, 6, 99};
+        int[] nums = {1,2,3,3,2,1};
         sort(nums,0,nums.length-1);
         for (int i : nums) {
             System.out.print(i + " ");

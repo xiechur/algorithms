@@ -17,16 +17,17 @@ public class QuickSort {
 
 
     private static int partition(int[] arr,int left ,int right) {
+
         while (left < right) {
-            int pivot = left;
-            while (left < right && arr[right] >= arr[pivot]) {
+            int temp = arr[left];
+            while (left < right && arr[right] >=temp) {
                 right--;
             }
-            swap(arr,pivot,right);
-            while (left < right && arr[left] <= pivot) {
+            swap(arr,left,right);
+            while (left < right && arr[left] <= temp) {
                 left++;
             }
-            swap(arr,pivot,left);
+            swap(arr,right,left);
         }
         return left;
     }

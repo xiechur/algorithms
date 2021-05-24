@@ -1,5 +1,7 @@
 package leetcode100;
 
+import sun.security.krb5.internal.rcache.DflCache;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,6 +41,32 @@ public class Q046 {
         return res;
     }
 
+
+    // 回溯
+    public static List<List<Integer>> permute2(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+        boolean[] used = new boolean[nums.length];
+        dfs(nums,nums.length,0,path,res,used);
+        return res;
+    }
+
+    private static void dfs(int[] nums,int len,int depth,List<Integer> path,List<List<Integer>> res,boolean[] used) {
+        if (depth ==  len) {
+            res.add(path);
+            return;
+        }
+        for (int i = 0; i < len;i++) {
+            if (!used[i]) {
+                path.add(nums[i]);
+                used[i] = true;
+                dfs(nums,len,depth+1,path,res,used);
+                used[i] = false;
+                path.remove(path.size()-1);
+            }
+        }
+
+    }
 
     public static void main(String[] args) {
         int[] nums = {-1, 0, 1, 2, -1, -4};

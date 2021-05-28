@@ -1,7 +1,6 @@
 package jianzhioffer;
 
 
-import leetcode.AddTwoNumbers;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -131,7 +130,51 @@ public class JZ40 {
         return res;
     }
 
+    public int[] getLeastNumbers6(int[] arr, int k) {
+        int[] res = new int[k];
+        if (k == 0) {
+            return res;
+        }
+        for(int i = 0;i < k;i++) {
+            res[i] = arr[i];
+        }
+        // 1.构建最大堆
+        for (int i = k/2-1;i >=0;i++){
+            adjustHeap(res,i,res.length);
+        }
+        // 2.与堆顶元素交换，调整堆
+        for (int i = k ;i < arr.length;i++) {
+            if(arr[k] <  res[0]) {
+                res[0]  = arr[k];
+                adjustHeap(res,0,res.length);
+            }
+        }
+        return res;
 
+
+    }
+
+
+    private void adjustHeap(int[] arr ,int i ,int len) {
+        int temp = arr[i];
+        // 1.从i节点的子节点开始
+        for (int k = 2 * i+1;k < len;k = 2* k+1) {
+            // 2.与兄弟节点判断
+            if (k+1 < len && arr[k] < arr[k+1]) {
+                k++;
+            }
+            // 3.k与i节点判断大小
+            if(arr[k] > temp) {
+                arr[i] = arr[k];
+                i = k;
+            } else {
+                break;
+            }
+
+        }
+        arr[i] = temp;
+
+    }
     /**
      * 快速
      *

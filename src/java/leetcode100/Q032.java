@@ -50,15 +50,18 @@ public class Q032 {
 
     /**
      *  动态规划
-     *  1.阶段
-     *  2.状态
-     *  3.最优值
-     *  4.边界
+     *  状态：dp[i] 代表以s.charAt(i)的最长有效括号长度
+     *  方程：
      *  表达式
+     *
      * @param s
      * @return
      */
     public int longestValidParentheses2(String s) {
+        // 定义状态方程
+        for (int i= 0;i < s.length();i++) {
+
+        }
         return 0;
     }
 

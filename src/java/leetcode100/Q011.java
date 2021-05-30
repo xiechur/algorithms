@@ -30,9 +30,13 @@ public class Q011 {
     public  static int maxArea2(int[] height) {
         int i = 0,j = height.length-1,max = 0;
         while (i < j) {
-            max = height[j] > height[i]?
-                    Math.max(max,(j-i)*height[i++] ):
-                    Math.max(max,(j-i)*height[j--] );
+            if (height[j] > height[i]) {
+                max = Math.max(max,(j-1)*height[i]);
+                i++;
+            } else {
+                max = Math.max(max,(j-1)*height[j]);
+                j--;
+            }
         }
         return max;
     }

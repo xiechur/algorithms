@@ -57,7 +57,9 @@ public class Q031 {
     }
 
     public static void main(String[] args) {
-
+        Q031 q = new Q031();
+        int[] arr =new int[10];
+        q.nextPermutation(arr);
     }
 
 }

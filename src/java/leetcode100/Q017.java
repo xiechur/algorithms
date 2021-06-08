@@ -78,10 +78,52 @@ public class Q017 {
         return combinations;
     }
 
+    private List<String> letterCombinations2(String digits) {
+        List<String> res=  new ArrayList<>();
+        StringBuffer sb = new StringBuffer();
+        final Map<Character,String[]> map = new HashMap<Character,String[]>() {{
+            put('2', new String[]{"a", "b", "c"});
+            put('3', new String[]{"d", "e", "f"});
+            put('4', new String[]{"g", "h", "i"});
+            put('5', new String[]{"j", "k", "l"});
+            put('6', new String[]{"m", "n", "o"});
+            put('7', new String[]{"p", "q", "r", "s"});
+            put('8', new String[]{"t", "u", "v"});
+            put('9', new String[]{"w", "x", "y", "z"});
+        }};
+        backtrack(res,digits,map,sb,0);
+        return res;
+    }
+
+
+    private void backtrack(List<String> res,String digits, Map<Character, String[]> phoneMap,StringBuffer sb,int index) {
+        // 终止条件
+        if(index == digits.length()) {
+            res.add(sb.toString());
+            return;
+        }
+        char ch = digits.charAt(index);
+        String[] phoneArr = phoneMap.get(ch);
+
+        for (String s :phoneArr ) {
+            // 选中
+            sb.append(phoneArr);
+            // 下一层
+            backtrack(res,digits,phoneMap,sb,index+1);
+            // 撤销
+            sb.deleteCharAt(sb.length()-1);
+        }
+
+    }
 
 
     public static void main(String[] args) {
         System.out.println(letterCombinations("23").toString());
+        Q017 q = new Q017();
+        List<String>  res= q.letterCombinations2("23");
+        for (String s:res) {
+            System.out.println(s);
+        }
     }
 
 }

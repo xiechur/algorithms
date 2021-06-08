@@ -10,7 +10,7 @@ public class Q096 {
     /**
      * 动态规划：
      * 状态：dp[i] 代表i个节点组成的二叉树种数量
-     * 方程：dp[i] = E (dp[i-j] * dp[j-1])
+     * 方程：dp[i] = E (dp[j] * dp[i-j-1])
      *      dp[1] = 1,
      *      dp[0] = 1,
      * @param n
@@ -22,8 +22,8 @@ public class Q096 {
         dp[0] = 1;
         dp[1] = 1;
         for (int i = 2;i <= n;i++) {
-            for (int j = 1;j <= i;j++) {
-                dp[i] += dp[j-1] * dp[i-j];
+            for (int j = 0;j < i;j++) {
+                dp[i] += dp[j] * dp[i-j-1];
             }
         }
         return dp[n];

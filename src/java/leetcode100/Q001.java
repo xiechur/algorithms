@@ -12,14 +12,14 @@ public class Q001 {
 
     // 暴力法
     public static int[] twoSum(int[] nums,int target) {
-        for (int i = 0; i < nums.length;i++) {
+        for (int i = 0;i < nums.length-1;i++) {
             for (int j = i+1;j < nums.length;j++) {
                 if (nums[i]+nums[j] == target) {
                     return new int[]{i,j};
                 }
             }
         }
-        throw new IllegalArgumentException("fail");
+        return new int[0];
     }
 
 
@@ -36,16 +36,34 @@ public class Q001 {
                 return new int[]{i,map.get(a)};
             }
         }
-        throw new IllegalArgumentException("fail");
+        return new int[0];
+    }
+
+    /**
+     * twoSum2进一步优化：
+     * @param nums
+     * @param target
+     * @return
+     */
+    public static int[] twoSum3(int[] nums,int target) {
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length;i++) {
+            int a = target - nums[i];
+            if (map.containsKey(a) && map.get(a) != i) {
+                return new int[]{i,map.get(a)};
+            }
+            map.put(nums[i],a);
+        }
+        return new int[0];
     }
 
 
     public static void main(String[] args) {
         int [] nums = {2, 7, 11, 15};
         int target = 9;
-        int[] arr = twoSum2(nums,target);
+        int[] arr = twoSum(nums,target);
         for (int i : arr) {
-            System.out.println(i);
+            System.out.print (i+" ");
         }
     }
 }

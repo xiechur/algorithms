@@ -4,6 +4,9 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 /**
+ * 一组线程互相等待，到达某个公共的屏障点，才得以继续执行。
+ *
+ * 应用场景：
  * @author xiechurong
  * @Date 2021/6/21
  */
@@ -23,7 +26,7 @@ public class CyclicBarrierTest {
                     Thread.sleep(1000 * times);
                     System.out.println("子线程" + Thread.currentThread().getName() + "准备好了");
                     cyclicBarrier.await();
-                    System.out.println("子线程" + Thread.currentThread().getName() + "开始跑了");
+                    System.out.println("子线程" + Thread.currentThread().getName() + "开始跑了"+System.currentTimeMillis());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (BrokenBarrierException e) {
